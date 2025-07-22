@@ -13,8 +13,8 @@ def test_submit_practice_form():
     browser.element('.react-datepicker__month-select').type('May')
     browser.element('.react-datepicker__year-select').type('1985')
     browser.element('.react-datepicker__day--010').click()
-    browser.element('#subjectsInput').type('Computer Science').press_enter()
-    browser.all('.custom-checkbox').element_by(have.exact_text('Waha')).click()
+    browser.element('#subjectsInput').type('Waha').press_enter()
+    browser.all('.custom-checkbox').element_by(have.exact_text('Sports')).click()
     browser.element('#uploadPicture').send_keys(file_path)
     browser.element('#currentAddress').type('ул. Тестовая, 007')
     browser.element('#state').click()
@@ -24,14 +24,14 @@ def test_submit_practice_form():
     browser.element('#submit').press_enter()
     browser.element('.modal-header').should(have.text('Thanks for submitting the form'))
     browser.all('.table-responsive td:nth-child(2)').should(have.texts(
-        'Иван Петров',
-        'ivan.petrov@example.com',
+        'Петр Петров',
+        'petr.petrov@example.com',
         'Male',
         '1234567890',
-        '15 May,1990',
-        'Computer Science',
+        '10 May,1985',
+        'Waha',
         'Sports',
         'testfile.txt',
-        'ул. Примерная, 123',
+        'ул. Тестовая, 007',
         'NCR Delhi'
     ))
