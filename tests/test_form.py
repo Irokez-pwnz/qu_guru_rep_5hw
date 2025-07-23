@@ -1,9 +1,11 @@
 from selene import browser, be, have
 import os
+import time
 
 def test_submit_practice_form():
     file_path = os.path.join(os.path.dirname(__file__), 'testfile.txt')
     browser.open('/automation-practice-form')
+    time.sleep(20)
     browser.element('#firstName').should(be.blank).type('Петр')
     browser.element('#lastName').should(be.blank).type('Петров')
     browser.element('#userEmail').should(be.blank).type('petr.petrov@example.com')
@@ -13,7 +15,7 @@ def test_submit_practice_form():
     browser.element('.react-datepicker__month-select').type('May')
     browser.element('.react-datepicker__year-select').type('1985')
     browser.element('.react-datepicker__day--010').click()
-    browser.element('#subjectsInput').type('Waha').press_enter()
+    browser.element('#subjectsInput').type('Computer Science').press_enter()
     browser.all('.custom-checkbox').element_by(have.exact_text('Sports')).click()
     browser.element('#uploadPicture').send_keys(file_path)
     browser.element('#currentAddress').type('ул. Тестовая, 007')
@@ -29,7 +31,7 @@ def test_submit_practice_form():
         'Male',
         '1234567890',
         '10 May,1985',
-        'Waha',
+        'Computer Science',
         'Sports',
         'testfile.txt',
         'ул. Тестовая, 007',
